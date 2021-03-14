@@ -24,7 +24,7 @@ class AppTest {
     @Test
     public void testNotFoundMostFrequentItem() {
         ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertEquals(0, App.findMostFrequentItem(array, 1, 2, 3));
+        assertEquals(1, App.findMostFrequentItem(array, 1, 2, 3));
     }
     @Test
     public void testEmptyArray() {

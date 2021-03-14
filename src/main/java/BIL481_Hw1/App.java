@@ -52,7 +52,7 @@ public class App{
         else if ((c_count > a_count) && (c_count > b_count))
             return c;
         else 
-            return 0;
+            return a;
 
     }
     
