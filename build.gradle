@@ -3,7 +3,7 @@
  *
  * This generated file contains a sample Java project to get you started.
  * For more details take a look at the Java Quickstart chapter in the Gradle
- * User Manual available at https://docs.gradle.org/6.4.1/userguide/tutorial_java_projects.html
+ * User Manual available at https://docs.gradle.org/6.8.3/userguide/tutorial_java_projects.html
  */
 
 plugins {
@@ -12,6 +12,9 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+
+    // https://imperceptiblethoughts.com/shadow/getting-started/#default-java-groovy-tasks
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 repositories {
@@ -19,6 +22,7 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
+
 
 dependencies {
     // This dependency is used by the application.
@@ -29,11 +33,43 @@ dependencies {
 
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    
+    implementation "com.sparkjava:spark-core:2.9.3"
+    implementation "com.sparkjava:spark-template-mustache:2.7.1"
+
+    implementation "org.apache.logging.log4j:log4j-api:2.13.3"
+    implementation "org.apache.logging.log4j:log4j-core:2.13.3"
+    implementation "org.apache.logging.log4j:log4j-slf4j-impl:2.13.3"
 }
 
+/* 
+dependencies{
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:29.0-jre'
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+
+    implementation "com.sparkjava:spark-core:2.9.3"
+    implementation "com.sparkjava:spark-template-mustache:2.7.1"
+    
+    implementation "org.apache.logging.log4j:log4j-api:2.13.3"
+    implementation "org.apache.logging.log4j:log4j-core:2.13.3"
+    implementation "org.apache.logging.log4j:log4j-slf4j-impl:2.13.3"
+    
+}*/
+/* 
 application {
     // Define the main class for the application.
     mainClassName = 'BIL481_Hw1.App'
+}*/
+
+application {
+    mainClass = 'BIL481_Hw1.App'
+}
+shadow {
+    mainClassName = application.mainClass.get()
 }
 
 test {
