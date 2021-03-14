@@ -1,10 +1,41 @@
 <title>My application deployed automatically</title>
     <h1>Hello, World!</h1>
         Result is {{result}}
-
+       
     <form action="compute" method="post">
-        <textarea name="input1" rows="10" cols="30"></textarea>
-        <textarea name="input2" rows="10" cols="30"></textarea>
+        <table border>
+        <tr><td>
+        Array:<textarea name="input1" rows="20" cols="20"></textarea></td>
+        <td>       
+        Find the most frequent number in the array. <br><br>
+        Press <Enter> after typing each value. <br>
+        Input array must contain the numbers dialed.<br>
+        Input array shouldn't be null or empty.<br>
+        All values must be a positive integer.<br>
+        Example array:<br>
+        1<br>
+        2<br>
+        3<br>
+        4<br>
+        5<br>
+        2<br>
+        4<br>
+        2<br>
+        First value: 4 Second value: 1 Third value: 2<br>
+        Output:<br>
+        Result is 2<br>
+        </td></tr>
+        <tr><td>
+        first value:
+        <textarea name="input2" rows="1" cols="5"></textarea>
+        </td><td>
+        second value:
+        <textarea name="input3" rows="1" cols="5"></textarea>
+        </td><td>
+        third value:
+        <textarea name="input4" rows="1" cols="5"></textarea>
+        </td></tr>
         <br>
+        </table>
         <input type="submit">
     </form>

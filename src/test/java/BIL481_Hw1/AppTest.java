@@ -14,25 +14,47 @@ class AppTest {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
-/*
+
     @Test
-    public void testFound() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertTrue(App.search(array, 4));
+    public void testFoundMostFrequentItem() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 2, 4));
+        assertEquals(2, App.findMostFrequentItem(array, 1,2,4));
     }
 
     @Test
-    public void testNotFound() {
+    public void testNotFoundMostFrequentItem() {
         ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertFalse(App.search(array, 5));
+        assertEquals(0, App.findMostFrequentItem(array, 1, 2, 3));
     }
     @Test
     public void testEmptyArray() {
         ArrayList<Integer> array = new ArrayList<>();
-        assertFalse(App.search(array, 1));
+        
+        assertThrows(IllegalArgumentException.class, ()->{
+            App.findMostFrequentItem(array, 1, 2, 3);
+        });
     }
     @Test
     public void testNull() {
-        assertFalse(App.search(null, 1));
-    }*/
+        ArrayList<Integer> array = null;
+        assertThrows(IllegalArgumentException.class, ()->{
+            App.findMostFrequentItem(array, 1, 2, 3);
+        });
+    }
+
+    @Test
+    public void elementIsNotOnTheList() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        assertThrows(IllegalArgumentException.class, ()->{
+            App.findMostFrequentItem(array, 1, 2, 10);
+        });
+    }
+
+    @Test
+    public void elementIsNotPositiveInteger() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        assertThrows(IllegalArgumentException.class, ()->{
+            App.findMostFrequentItem(array, 1, -2, 3);
+        });
+    }
 }

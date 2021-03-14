@@ -22,22 +22,46 @@ public class App{
         return "Hello world.";
     }
 
-    public static boolean search(ArrayList<Integer> array, int e) {
-        System.out.println("inside search");
-        if (array == null) return false;
-
-        for (int elt : array) {
-            if (elt == e) return true;
+    public static int findMostFrequentItem(ArrayList<Integer> array, int a, int b, int c) {
+        if(array == null || array.isEmpty() 
+               || a <= 0 || b <= 0 || c <= 0 || 
+               !array.contains(a) || !array.contains(b) || !array.contains(c))
+            throw new IllegalArgumentException();
+        
+        int a_count = 0;
+        int b_count = 0;
+        int c_count = 0;
+        
+        for (int number1 : array) {
+            if (number1 == a) 
+                a_count++;
         }
-        return false;
+        for (int number2 : array) {
+            if (number2 == b) 
+                b_count++;
+        }
+        for (int number3 : array) {
+            if (number3 == c) 
+                c_count++;
+        }
+
+        if ((a_count > b_count) && (a_count > c_count))
+            return a;
+        else if ((b_count > a_count) && (b_count > c_count))
+            return b;
+        else if ((c_count > a_count) && (c_count > b_count))
+            return c;
+        else 
+            return 0;
+
     }
     
     public static void main(String[] args) {
         Logger logger = LogManager.getLogger(App.class);
-
-        int port = Integer.parseInt(System.getenv("PORT"));
+        
+        int port = Integer.parseInt(System.getenv("PORT"));    
         port(port);
-        logger.error(String.format("Current port number: %d" , port));
+        logger.error("Current port number: " + port);
         
         //port(getHerokuAssignedPort());
 
@@ -59,12 +83,19 @@ public class App{
             sc1.close();
             System.out.println(inputList);
             
+            
             String input2 = req.queryParams("input2").replaceAll("\\s","");
             int input2AsInt = Integer.parseInt(input2);
 
-            boolean result = App.search(inputList, input2AsInt);
+            String input3 = req.queryParams("input3").replaceAll("\\s","");
+            int input3AsInt = Integer.parseInt(input3);
 
-            Map<String, Boolean> map = new HashMap<String, Boolean>();
+            String input4 = req.queryParams("input4").replaceAll("\\s","");
+            int input4AsInt = Integer.parseInt(input4);
+
+            int result = App.findMostFrequentItem(inputList, input2AsInt, input3AsInt, input4AsInt);
+
+            Map<String, Integer> map = new HashMap<String, Integer>();
             map.put("result", result);
             return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
@@ -83,6 +114,6 @@ public class App{
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
-        return 4572; //return default port if heroku-port isn't set (i.e. on localhost)
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 }
